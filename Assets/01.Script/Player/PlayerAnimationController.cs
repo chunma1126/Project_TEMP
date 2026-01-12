@@ -12,7 +12,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator = GetComponentInChildren<Animator>();
 
-        input.MovementCallback += SetMoveAnimation;
+        input.OnMovement += SetMoveAnimation;
     }
 
     private void SetMoveAnimation(Vector2 movement)

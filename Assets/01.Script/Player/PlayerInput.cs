@@ -7,7 +7,7 @@ public class PlayerInput : ScriptableObject,Controls.IPlayerActions
 {
     public Vector2 Movement {get; private set;}
     
-    public Action<Vector2> MovementCallback;
+    public Action<Vector2> OnMovement;
     
     private Controls _controls;
     private Camera _mainCam;
@@ -43,7 +43,7 @@ public class PlayerInput : ScriptableObject,Controls.IPlayerActions
     public void OnMove(InputAction.CallbackContext context)
     {
         Movement = context.ReadValue<Vector2>();
-        MovementCallback.Invoke(Movement);
+        OnMovement.Invoke(Movement);
     }
 
     public void OnLook(InputAction.CallbackContext context)
