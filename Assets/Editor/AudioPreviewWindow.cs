@@ -36,7 +36,7 @@ public class AudioPreviewWindow : EditorWindow
 
     #region Lifecycle
 
-    [MenuItem("Window/Audio Preview")]
+    [MenuItem("Tools/Audio Preview")]
     public static void ShowWindow()
     {
         var window = GetWindow<AudioPreviewWindow>("Audio Preview");

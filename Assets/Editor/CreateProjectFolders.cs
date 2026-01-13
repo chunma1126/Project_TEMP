@@ -25,7 +25,7 @@ public static class CreateProjectFolders
         return AssetDatabase.LoadAssetAtPath<DefaultFoldersPath>(path);
     }
 
-    [MenuItem("Assets/Create/Create Folders")]
+    [MenuItem("Tools/Create Folders")]
     public static void CreateFolders()
     {
         var defaultFolderspath = FindDefaultFoldersPath();
