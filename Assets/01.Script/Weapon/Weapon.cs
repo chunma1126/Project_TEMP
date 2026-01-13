@@ -7,9 +7,7 @@ public class Weapon : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float angle;
 
-
-    [SerializeField] private float radius = 2.5f;
-    [SerializeField] private float rotateSpeed = 180f;
+    public WeaponData WeaponData;
 
     private void Awake()
     {
@@ -17,12 +15,18 @@ public class Weapon : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    private void Start()
+    {
+        gameObject.name = WeaponData.weaponName;
+        spriteRenderer.sprite = WeaponData.weaponSprite;
+    }
+
     public void Move()
     {
-        angle += rotateSpeed * Time.deltaTime;
+        angle += WeaponData.rotateSpeed * Time.deltaTime;
         float rad = angle * Mathf.Deg2Rad;
 
-        Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * radius;
+        Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * WeaponData.radius;
         transform.localPosition = offset;
         transform.localRotation = Quaternion.Euler(0f, 0f, angle + 270f);
 
@@ -41,10 +45,10 @@ public class Weapon : MonoBehaviour
         if (other.TryGetComponent(out IDamageable damageable))
         {
             ActionData data = new ActionData();
-            data.damage = 10;
+            data.damage = WeaponData.damage;
             data.dealer = transform;
             data.knockbackDirection = (other.transform.position - player.position).normalized;
-            data.knockbackPower = 4;
+            data.knockbackPower = WeaponData.knockbackPower;
 
             damageable.TakeDamage(data);
         }
