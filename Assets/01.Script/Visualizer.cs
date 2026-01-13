@@ -10,7 +10,7 @@ public class Visualizer : MonoBehaviour
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
     }
     
-    public void Flip(Vector2 direction)
+    public virtual void Flip(Vector2 direction)
     {
         if (direction.x > 0 && !isRight)
         {
