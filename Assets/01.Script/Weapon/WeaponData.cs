@@ -12,4 +12,7 @@ public class WeaponData : ScriptableObject
     public float damage;
     public float knockbackPower;
 
+    [Header("Collider info")] 
+    public Vector2 colliderOffset;
+    public Vector2 colliderSize;
 }

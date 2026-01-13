@@ -1,24 +1,34 @@
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
     private Transform player;
     private SpriteRenderer spriteRenderer;
+    private CapsuleCollider2D collider;
     private float angle;
-
+    
     public WeaponData WeaponData;
-
+    
     private void Awake()
     {
         player = transform.parent;
         spriteRenderer = GetComponent<SpriteRenderer>();
+        collider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start()
     {
+        SetWeaponData();
+
+    }
+
+    private void SetWeaponData()
+    {
         gameObject.name = WeaponData.weaponName;
         spriteRenderer.sprite = WeaponData.weaponSprite;
+
+        collider.size = WeaponData.colliderSize;
+        collider.offset = WeaponData.colliderOffset;
     }
 
     public void Move()

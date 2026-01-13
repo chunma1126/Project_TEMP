@@ -17215,7 +17215,7 @@ SpriteRenderer:
   m_SortingLayerID: 346786149
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 5570841819123970152, guid: f7226bb25d41ab34aae817e170ff0739, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -17223,7 +17223,7 @@ SpriteRenderer:
   m_Size: {x: 2, y: 2}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2063440768
@@ -17238,8 +17238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22787ab93c415874cb933571b43e9046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Weapon
-  radius: 1.5
-  rotateSpeed: 180
+  WeaponData: {fileID: 11400000, guid: b461465d10f44e245badfdd500e18587, type: 2}
 --- !u!50 &2063440769
 Rigidbody2D:
   serializedVersion: 5
@@ -17301,8 +17300,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.00948143, y: 0.14854765}
-  m_Size: {x: 0.5777359, y: 1.2098534}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!1 &2108460171
 GameObject:
@@ -17458,6 +17457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
   hitMaterial: {fileID: 2100000, guid: 2e86b3907039ca84887e2bbf2e4b1bbd, type: 2}
+  isKnockback: 0
 --- !u!1 &2124862682
 GameObject:
   m_ObjectHideFlags: 0
