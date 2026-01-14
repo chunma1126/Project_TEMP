@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     private EnemyAnimationController animationController;
     private Visualizer visualizer;
     private EnemyHealth health;
-
+    private bool canMove = true;
     private Vector2 movement;
     private readonly Collider2D[] closeEnemies = new Collider2D[25];
 
@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (player == null || health.isKnockback) return;
+        if (player == null || !canMove) return;
 
         Vector2 dirToPlayer = (player.position - transform.position).normalized;
 
@@ -71,4 +71,9 @@ public class Enemy : MonoBehaviour
         return separation;
     }
 
+    public void SetMove(bool canMove)
+    {
+        this.canMove = canMove;
+    }
+    
 }
