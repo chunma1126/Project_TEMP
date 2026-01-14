@@ -1,4 +1,7 @@
+using System;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Enemy : MonoBehaviour
 {
@@ -10,7 +13,7 @@ public class Enemy : MonoBehaviour
     private Vector2 movement;
     private readonly Collider2D[] closeEnemies = new Collider2D[25];
 
-    public Transform Player;
+    public Transform player;
     public float moveSpeed = 3f;
     public float separationDistance = 1f;
     public float separationForce = 2f;
@@ -25,9 +28,9 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Player == null || health.isKnockback) return;
+        if (player == null || health.isKnockback) return;
 
-        Vector2 dirToPlayer = (Player.position - transform.position).normalized;
+        Vector2 dirToPlayer = (player.position - transform.position).normalized;
 
         Vector2 desired = dirToPlayer * moveSpeed + GetSeparationDir() * separationForce;
 
@@ -36,6 +39,17 @@ public class Enemy : MonoBehaviour
         visualizer.Flip(desired);
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag("Player") && other.gameObject.TryGetComponent(out IDamageable damageable))
+        {
+            ActionData actionData = new ActionData();
+            actionData.damage = 10;
+            actionData.dealer = transform;
+            damageable.TakeDamage(actionData);
+        }
+    }
+    
     private Vector2 GetSeparationDir()
     {
         Vector2 separation = Vector2.zero;

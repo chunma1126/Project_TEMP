@@ -31,23 +31,21 @@ public class Weapon : MonoBehaviour
         collider.offset = WeaponData.colliderOffset;
     }
 
-    public void Move()
+    public void Move(int index, int totalCount)
     {
+        float baseAngle = 360f / totalCount * index;
+
         angle += WeaponData.rotateSpeed * Time.deltaTime;
-        float rad = angle * Mathf.Deg2Rad;
+        float finalAngle = angle + baseAngle;
 
+        float rad = finalAngle * Mathf.Deg2Rad;
         Vector3 offset = new Vector3(Mathf.Cos(rad), Mathf.Sin(rad), 0f) * WeaponData.radius;
-        transform.localPosition = offset;
-        transform.localRotation = Quaternion.Euler(0f, 0f, angle + 270f);
 
-        if (transform.position.y > player.position.y)
-        {
-            spriteRenderer.sortingOrder = -1;
-        }
-        else
-        {
-            spriteRenderer.sortingOrder = 1;
-        }
+        transform.localPosition = offset;
+        transform.localRotation = Quaternion.Euler(0f, 0f, finalAngle + 270f);
+
+        spriteRenderer.sortingOrder =
+            transform.position.y > player.position.y ? -1 : 1;
     }
 
     private void OnTriggerEnter2D(Collider2D other)

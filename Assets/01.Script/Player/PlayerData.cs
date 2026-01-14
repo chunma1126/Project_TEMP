@@ -9,12 +9,14 @@ public class PlayerData : ScriptableObject
     public Action<float> OnHealthChange;
     public Action<float> OnDefenseChange;
     public Action<float> OnEvasionChange;
+    public Action<float> OnInvincibleTimeChange;
     
     [SerializeField] private float moveSpeed = 4f;
     [SerializeField] private float maxHealth = 100f;
     [SerializeField] private float currentHealth;
     [SerializeField] private float defense;
     [SerializeField] private float evasion;
+    [SerializeField] private float invincibleTime;
     
     public float MoveSpeed
     {
@@ -51,8 +53,6 @@ public class PlayerData : ScriptableObject
             OnHealthChange?.Invoke(currentHealth);
         }
     }
-    
-   
 
     public float Defense
     {
@@ -75,5 +75,16 @@ public class PlayerData : ScriptableObject
             OnEvasionChange?.Invoke(evasion);
         }
     }
-
+    
+    public float InvincibleTime
+    {
+        get => invincibleTime;
+        set
+        {
+            if (Mathf.Approximately(invincibleTime, value)) return;
+            invincibleTime = value;
+            OnInvincibleTimeChange?.Invoke(invincibleTime);
+        }
+    }
+    
 }

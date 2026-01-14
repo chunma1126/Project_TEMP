@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -9,9 +9,9 @@ public class WeaponHolder : MonoBehaviour
 
     private void Update()
     {
-        foreach (var item in weaponList)
+        for (int i = 0; i < weaponList.Count; i++)
         {
-            item.Move();
+            weaponList[i].Move(i, weaponList.Count);
         }
     }
     

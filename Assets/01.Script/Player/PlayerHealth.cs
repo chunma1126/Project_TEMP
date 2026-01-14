@@ -1,18 +1,19 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 using Random = UnityEngine.Random;
 
 public class PlayerHealth : MonoBehaviour,IDamageable
 {
     private const float EVASION_SCALE = 40;
-    private const float DAMAGE_INTERVAL_TIME = 0.1f;
     
-    [SerializeField] private PlayerData playerData;
     private float lastDamageTime;
     
-    public Action OnEvasion;
-        
+    [SerializeField] private PlayerData playerData;
     
+    public UnityEvent OnEvasionEvent;
+    public UnityEvent OnHitEvent;
+        
     private void Awake()
     {
         playerData.CurrentHealth = playerData.MaxHealth;
@@ -28,15 +29,16 @@ public class PlayerHealth : MonoBehaviour,IDamageable
             return;
         }
 
-        if (Time.time < lastDamageTime + DAMAGE_INTERVAL_TIME)
+        if (Time.time < lastDamageTime + playerData.InvincibleTime)//InvincibleTime
         {
             return;
         }
-        
+                
         playerData.CurrentHealth -= finalDamage;
-        
         lastDamageTime = Time.time;
             
+        OnHitEvent?.Invoke();
+        
         if (playerData.CurrentHealth <= 0)
         {
             Dead();

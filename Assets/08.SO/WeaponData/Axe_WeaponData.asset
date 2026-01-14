@@ -15,7 +15,7 @@ MonoBehaviour:
   weaponName: Axe
   weaponSprite: {fileID: 3748091206297535535, guid: 6b1e0e25b0a455f40a4aa32f4d31c6ab, type: 3}
   radius: 2
-  rotateSpeed: 120
+  rotateSpeed: -120
   damage: 10
   knockbackPower: 2.4
   colliderOffset: {x: -0.00948143, y: 0.1485476}

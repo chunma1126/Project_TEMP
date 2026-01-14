@@ -12,4 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c40b077c74f921749961101aaa5ae7ca, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerData
-  MoveSpeed: 3
+  moveSpeed: 4
+  maxHealth: 100
+  currentHealth: 0
+  defense: 0
+  evasion: 0
+  invincibleTime: 1.2
